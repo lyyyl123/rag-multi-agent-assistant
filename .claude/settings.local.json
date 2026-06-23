@@ -1,7 +1,0 @@
-{
-  "permissions": {
-    "allow": [
-      "PowerShell(Get-ChildItem -Path . -Recurse -File | ForEach-Object { $_.FullName })"
-    ]
-  }
-}
