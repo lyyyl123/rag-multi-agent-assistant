@@ -41,8 +41,11 @@ class DocumentService:
         # 2. 计算内容哈希
         content_hash = self._compute_hash(file_path)
 
-        # 3. 检查是否已存在（去重）
-        existing = db.query(Document).filter(Document.content_hash == content_hash).first()
+        # 3. 检查是否已存在（去重，仅对已完成的文档去重）
+        existing = db.query(Document).filter(
+            Document.content_hash == content_hash,
+            Document.status == "completed",
+        ).first()
         if existing:
             return DocumentUploadResponse(
                 id=existing.id,
@@ -52,6 +55,16 @@ class DocumentService:
                 status=existing.status,
                 message="文档已存在",
             )
+
+        # 清理同文件的失败记录
+        failed_docs = db.query(Document).filter(
+            Document.content_hash == content_hash,
+            Document.status == "failed",
+        ).all()
+        for doc in failed_docs:
+            db.query(DocumentChunk).filter(DocumentChunk.document_id == doc.id).delete()
+            db.delete(doc)
+        db.commit()
 
         # 4. 创建 Document 记录
         doc_id = str(uuid.uuid4())

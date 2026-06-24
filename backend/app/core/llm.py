@@ -1,4 +1,5 @@
-from langchain_openai import ChatOpenAI, OpenAIEmbeddings
+from langchain_openai import ChatOpenAI
+from langchain_ollama import OllamaEmbeddings
 from .config import settings
 
 
@@ -12,10 +13,9 @@ def get_llm() -> ChatOpenAI:
     )
 
 
-def get_embeddings() -> OpenAIEmbeddings:
+def get_embeddings() -> OllamaEmbeddings:
     """获取 Embeddings 实例"""
-    return OpenAIEmbeddings(
+    return OllamaEmbeddings(
         model=settings.EMBEDDING_MODEL,
-        api_key=settings.OPENAI_API_KEY,
-        base_url=settings.OPENAI_BASE_URL,
+        base_url=settings.OLLAMA_BASE_URL,
     )

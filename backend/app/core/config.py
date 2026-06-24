@@ -5,11 +5,14 @@ from typing import Optional
 class Settings(BaseSettings):
     """应用配置，从 .env 文件读取"""
 
-    # OpenAI API 配置
-    OPENAI_API_KEY: str = ""
-    OPENAI_BASE_URL: str = "https://api.openai.com/v1"
-    OPENAI_MODEL: str = "gpt-3.5-turbo"
-    EMBEDDING_MODEL: str = "text-embedding-ada-002"
+    # OpenAI API 配置（对话模型）
+    OPENAI_API_KEY: str = "tp-crbwd8r4b80paexd3d2jelhrvrhe7rh2snqyvso1c7lwk8xt"
+    OPENAI_BASE_URL: str = "https://token-plan-cn.xiaomimimo.com/v1"
+    OPENAI_MODEL: str = "mimo-v2.5-pro"
+
+    # Ollama 配置（Embedding 模型）
+    OLLAMA_BASE_URL: str = "http://localhost:11434"
+    EMBEDDING_MODEL: str = "qwen3"
 
     # PostgreSQL 配置
     POSTGRES_HOST: str = "localhost"

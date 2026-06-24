@@ -72,7 +72,7 @@
 <script setup>
 import { ref, onMounted } from 'vue'
 import { ElMessage } from 'element-plus'
-import { uploadDocument } from '../api'
+import { uploadDocument, getDocuments } from '../api'
 
 const fileList = ref([])
 const selectedFile = ref(null)
@@ -122,8 +122,12 @@ const handleUpload = async () => {
 }
 
 const loadDocuments = async () => {
-  // TODO: 实现获取文档列表 API
-  documents.value = []
+  try {
+    const response = await getDocuments()
+    documents.value = response.data
+  } catch (error) {
+    console.error('获取文档列表失败:', error)
+  }
 }
 
 onMounted(() => {

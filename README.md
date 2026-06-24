@@ -80,6 +80,9 @@ rag-multi-agent-assistant/
 - [x] RAG 问答接口
 - [x] 前端文档上传页面
 - [x] 前端智能问答页面
+- [x] 文档列表接口（GET /api/documents）
+- [x] 失败文档重新上传支持
+- [x] LLM 模型配置修复
 
 ## 本地启动方式
 

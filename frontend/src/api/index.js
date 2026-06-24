@@ -20,6 +20,9 @@ export const uploadDocument = (formData) =>
     headers: { 'Content-Type': 'multipart/form-data' },
   })
 
+// 获取文档列表
+export const getDocuments = () => api.get('/api/documents')
+
 // 获取会话列表
 export const getSessions = () => api.get('/api/sessions')
 
