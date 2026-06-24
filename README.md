@@ -58,7 +58,9 @@ rag-multi-agent-assistant/
 └── README.md
 ```
 
-## 第一阶段功能
+## 已完成功能
+
+### 第一阶段：项目初始化（2026-06-23）
 
 - [x] 项目初始化和目录结构
 - [x] 后端 FastAPI 骨架
@@ -67,7 +69,17 @@ rag-multi-agent-assistant/
 - [x] Docker Compose 配置
 - [x] PostgreSQL 和 Redis 服务
 - [x] 项目文档
-- [x] 第一阶段验证通过（2026-06-23）
+
+### 第二阶段：RAG 核心流程（2026-06-24）
+
+- [x] 文档上传接口（支持 PDF/TXT/Markdown）
+- [x] 文档解析器（pypdf + 文本读取）
+- [x] 文本切分器（RecursiveCharacterTextSplitter）
+- [x] Chroma 向量存储
+- [x] Embedding 生成和存储
+- [x] RAG 问答接口
+- [x] 前端文档上传页面
+- [x] 前端智能问答页面
 
 ## 本地启动方式
 

@@ -1,5 +1,36 @@
 # 开发日志
 
+## 2026-06-24
+
+### 第二阶段完成：RAG 核心流程
+
+**完成内容：**
+
+后端实现：
+- `backend/app/rag/loaders.py` - 文档加载器（支持 PDF/TXT/Markdown）
+- `backend/app/rag/splitter.py` - 文本切分器（RecursiveCharacterTextSplitter）
+- `backend/app/rag/vector_store.py` - Chroma 向量存储（add_documents/search）
+- `backend/app/services/document_service.py` - 文档服务（上传、解析、切分、Embedding、存储）
+- `backend/app/services/chat_service.py` - 聊天服务（RAG 问答流程）
+- `backend/app/api/documents.py` - 文档上传接口
+- `backend/app/api/chat.py` - 聊天接口
+
+前端实现：
+- `frontend/src/views/Upload.vue` - 文档上传页面（拖拽上传、状态显示）
+- `frontend/src/views/Chat.vue` - 智能问答页面（消息列表、输入框、Agent 轨迹）
+
+新增依赖：
+- langchain-text-splitters
+- chromadb
+- langchain-chroma
+
+**验证结果：**
+- 后端服务启动正常
+- 前端服务启动正常
+- 健康检查接口正常
+
+---
+
 ## 2026-06-23
 
 ### 第一阶段验证完成

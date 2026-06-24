@@ -1,14 +1,24 @@
 """
 文档接口
-
-第一阶段预留，后续实现
 """
-from fastapi import APIRouter
+from fastapi import APIRouter, UploadFile, File, Depends
+from sqlalchemy.orm import Session
+
+from ..core.database import get_db
+from ..services.document_service import document_service
+from ..schemas.document import DocumentUploadResponse
 
 router = APIRouter()
 
 
-@router.post("/api/documents/upload")
-async def upload_document():
-    """文档上传接口 - TODO: 第二阶段实现"""
-    return {"message": "文档上传接口开发中"}
+@router.post("/api/documents/upload", response_model=DocumentUploadResponse)
+async def upload_document(
+    file: UploadFile = File(...),
+    db: Session = Depends(get_db),
+):
+    """
+    文档上传接口
+
+    支持 PDF、TXT、Markdown 格式
+    """
+    return await document_service.upload_document(file, db)
